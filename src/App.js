@@ -22,7 +22,7 @@
  *
  */
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -32,8 +32,19 @@ import ProfileClass from "./components/ProfileClass";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Error from "./components/Error";
+// import InstaMart from "./components/InstaMart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import ShimmerUI from "./components/Shimmer";
+
+// Chunking
+// Code Splitting
+// Dynamice Bundling
+// Lazy Loading
+// On Demand Loading
+// Dynamic Import
+
+const InstaMart = lazy(() => import("./components/InstaMart"));
 
 const AppLayout = () => {
   return (
@@ -73,6 +84,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<ShimmerUI />}>
+            <InstaMart />
+          </Suspense>
+        ),
       },
     ],
   },

@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./Shimmer";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import { ALL_RESTAURANTS_URL } from "../config";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [searchTxt, setSearchText] = useState("");
@@ -13,14 +16,18 @@ const Body = () => {
   }, []);
 
   async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.2976944&lng=73.203784&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(ALL_RESTAURANTS_URL);
     const json = await data.json();
 
     //Optional Chaining
     setallRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+  }
+
+  const isOnline = useOnline();
+
+  if (!isOnline) {
+    return <h1>Offline, please check your internet connection!</h1>;
   }
 
   return allRestaurants.length === 0 ? (
@@ -39,11 +46,9 @@ const Body = () => {
           className="search-btn"
           onClick={() => {
             // Need to filter the data
-            setFilteredRestaurants(
-              allRestaurants.filter((e) =>
-                e.data.name.toLowerCase().startsWith(searchTxt.toLowerCase())
-              )
-            );
+
+            const data = filterData(searchTxt, allRestaurants);
+            setFilteredRestaurants(data);
           }}
         >
           Search
