@@ -12,7 +12,9 @@ const RestaurantMenu = () => {
   ) : (
     <div className="restaurant-info">
       <div className="restaurant-overview">
-        <h1>Restaurant: {restaurantInfo.name}</h1>
+        <h1 className="text-2xl font-bold mb-5">
+          Restaurant: {restaurantInfo.name}
+        </h1>
         <img
           alt="Image"
           src={IMG_SRC + restaurantInfo.cloudinaryImageId}

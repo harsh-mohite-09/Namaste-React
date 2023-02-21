@@ -5,7 +5,7 @@ const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
     <>
       <div className="card">
         <img src={IMG_SRC + cloudinaryImageId} />
-        <h2>{name}</h2>
+        <h2 className="text-xl font-bold mb-3 mt-1">{name}</h2>
         <h3>{cuisines.join(", ")}</h3>
         <h4>{avgRating} stars</h4>
       </div>

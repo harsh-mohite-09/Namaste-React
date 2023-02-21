@@ -64,7 +64,6 @@ const Body = () => {
             </Link>
           ))
         )}
-        {/* <RestaurantCard {...restaurantList[0]} /> */}
       </div>
     </>
   );

@@ -1,8 +1,14 @@
-/* #container {
-  background-color: red;
-} */
+@import "tailwindcss/base";
 
-.header {
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +51,7 @@
 .card > img {
   width: 100%;
   height: 150px;
-  /* object-fit: cover; */
+  object-fit: cover;
   border-radius: 10px;
 }
 
@@ -94,4 +100,4 @@ a {
   font-size: 1.2em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   border-radius: 10px;
-}
+} */
