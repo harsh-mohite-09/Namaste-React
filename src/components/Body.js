@@ -34,16 +34,16 @@ const Body = () => {
     <ShimmerUI />
   ) : (
     <>
-      <div className="search-container">
+      <div className="p-5 bg-pink-50 my-4 shadow-lg">
         <input
           type="text"
-          className="search-input"
+          className="p-3"
           placeholder="Search"
           value={searchTxt}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="search-btn"
+          className="p-3 m-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700"
           onClick={() => {
             // Need to filter the data
 
@@ -54,7 +54,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="card-container">
+      <div className="flex flex-wrap">
         {filteredRestaurants.length === 0 ? (
           <h1>No Match Found!</h1>
         ) : (
@@ -68,5 +68,4 @@ const Body = () => {
     </>
   );
 };
-
 export default Body;
