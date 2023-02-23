@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/logo.jpg";
+import UserContext from "../utils/UserContext";
 
 const Title = () => (
   <a href="/">
@@ -10,6 +11,8 @@ const Title = () => (
 
 const Header = () => {
   const [auth, setAuth] = useState(false);
+
+  const { user } = useContext(UserContext);
 
   return (
     <div className="flex justify-between items-center bg-orange-200 shadow-lg sm:bg-blue-50">
@@ -31,15 +34,18 @@ const Header = () => {
           <li className="px-2">Cart</li>
         </ul>
       </div>
-      {auth ? (
-        <button className="mr-8" onClick={() => setAuth(false)}>
-          Logout
-        </button>
-      ) : (
-        <button className="mr-8" onClick={() => setAuth(true)}>
-          Login
-        </button>
-      )}
+      <div className="flex">
+        <span className="mr-5 font-bold text-red-400">{user.name}</span>
+        {auth ? (
+          <button className="mr-8" onClick={() => setAuth(false)}>
+            Logout
+          </button>
+        ) : (
+          <button className="mr-8" onClick={() => setAuth(true)}>
+            Login
+          </button>
+        )}
+      </div>
     </div>
   );
 };
