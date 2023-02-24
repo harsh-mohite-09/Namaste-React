@@ -22,7 +22,7 @@
  *
  */
 
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -37,6 +37,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ShimmerUI from "./components/Shimmer";
 
+import UserContext from "./utils/UserContext.js";
+
 // Chunking
 // Code Splitting
 // Dynamice Bundling
@@ -47,12 +49,17 @@ import ShimmerUI from "./components/Shimmer";
 const InstaMart = lazy(() => import("./components/InstaMart"));
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Harsh Mohite",
+    email: "harsh.mohite009@gmail.com",
+  });
+
   return (
-    <>
+    <UserContext.Provider value={{ user: user, setUser: setUser }}>
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 };
 
