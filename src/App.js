@@ -38,6 +38,10 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ShimmerUI from "./components/Shimmer";
 
 import UserContext from "./utils/UserContext.js";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+
+import Cart from "./components/Cart";
 
 // Chunking
 // Code Splitting
@@ -55,11 +59,13 @@ const AppLayout = () => {
   });
 
   return (
-    <UserContext.Provider value={{ user: user, setUser: setUser }}>
-      <Header />
-      <Outlet />
-      <Footer />
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -99,6 +105,10 @@ const appRouter = createBrowserRouter([
             <InstaMart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

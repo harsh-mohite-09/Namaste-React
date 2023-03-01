@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/logo.jpg";
 import UserContext from "../utils/UserContext";
@@ -14,8 +15,10 @@ const Header = () => {
 
   const { user } = useContext(UserContext);
 
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
-    <div className="flex justify-between items-center bg-orange-200 shadow-lg sm:bg-blue-50">
+    <div className="flex justify-between items-center bg-orange-200 shadow-lg sm:bg-blue-50 mb-12">
       <Title />
       <div className="nav-items">
         <ul className="flex justify-between">
@@ -31,7 +34,11 @@ const Header = () => {
           <li className="px-2 hover:font-bold hover:text-red-500">
             <Link to="/instamart">Insta Mart</Link>
           </li>
-          <li className="px-2">Cart</li>
+          <li className="px-2 hover:font-bold">
+            <Link to="/cart">
+              Cart - {cartItems.length ? `${cartItems.length} items` : "Empty"}
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="flex">
