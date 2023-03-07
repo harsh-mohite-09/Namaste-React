@@ -38,7 +38,12 @@ const Cart = () => {
           <li className="my-2 flex w-full justify-between items-center">
             <div className="flex items-center">
               <img
-                src={IMG_SRC + item.cloudinaryImageId}
+                src={
+                  item?.cloudinaryImageId === "" ||
+                  item?.cloudinaryImageId === undefined
+                    ? "https://www.macmillandictionary.com/external/slideshow/thumb/Grey_thumb.png"
+                    : `${IMG_SRC}${item?.cloudinaryImageId}`
+                }
                 alt="food item"
                 className="w-[150px] h-[100px] rounded-lg object-cover"
               />
@@ -50,7 +55,7 @@ const Cart = () => {
         <li className="my-5 flex w-full justify-between font-bold text-xl">
           <div>Total</div>
           <div className="mr-5">
-            {cartItems.reduce((acc, el) => acc + el.price / 100, 0)}
+            {cartItems.reduce((acc, el) => acc + Math.floor(el.price / 100), 0)}
           </div>
         </li>
       </ol>

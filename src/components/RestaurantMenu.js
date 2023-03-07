@@ -35,14 +35,14 @@ const RestaurantMenu = () => {
       </div>
       <div>
         <h2 className="font-bold text-xl">Menu</h2>
-        <ol className="h-4/6 overflow-hidden">
+        <ol className="h-[400px] overflow-auto">
           {Object.values(restaurantInfo?.menu?.items).map((item) => (
             <div className="flex">
               <li className="py-2 my-3 w-64" key={item.id}>
                 {item.name}
               </li>
               <button
-                className="p-2 m-3 bg-green-100 hover:bg-green-400 h-10"
+                className="p-2 m-3 bg-green-100 hover:bg-green-400 h-10 rounded-lg"
                 onClick={() => dispatch(addItem(item))}
               >
                 Add Item
