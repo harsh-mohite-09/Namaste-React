@@ -6,7 +6,7 @@ import UserContext from "../utils/UserContext";
 
 const Title = () => (
   <a href="/">
-    <img className="h-28" alt="logo" src={Logo}></img>
+    <img data-testid="logo" className="h-28" alt="logo" src={Logo}></img>
   </a>
 );
 
