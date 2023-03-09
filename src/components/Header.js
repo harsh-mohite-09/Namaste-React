@@ -35,7 +35,7 @@ const Header = () => {
             <Link to="/instamart">Insta Mart</Link>
           </li>
           <li className="px-2 hover:font-bold">
-            <Link to="/cart">
+            <Link to="/cart" data-testid="cart">
               Cart - {cartItems.length ? `${cartItems.length} items` : "Empty"}
             </Link>
           </li>

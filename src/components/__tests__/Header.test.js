@@ -17,8 +17,26 @@ test("Logo should load on rendering header", () => {
 
   const logo = header.getAllByTestId("logo");
 
-  console.log(logo[0]);
+  // console.log(logo[0]);
 
   expect(logo[0].src).toBe("http://localhost/" + dummyLogo);
+  // Check if logo is loaded
+});
+
+test("Cart should be empty", () => {
+  // Load Header
+  const header = render(
+    <StaticRouter>
+      <Provider store={store}>
+        <Header />
+      </Provider>
+    </StaticRouter>
+  );
+
+  const cart = header.getByTestId("cart");
+
+  // console.log(cart);
+
+  expect(cart.innerHTML).toBe("Cart - Empty");
   // Check if logo is loaded
 });
